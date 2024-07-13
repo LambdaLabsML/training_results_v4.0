@@ -1,0 +1,4 @@
+folder,e2e_time_mean,e2e_time_std,raw_train_time_mean,raw_train_time_std,training_sequences_per_second_mean,training_sequences_per_second_std
+1cc_1x8x48x1_24-07-13_17-34-28,479.44,28.36,455.56,28.18,10148.24,597.84
+1cc_2x8x48x1_24-07-13_17-34-31,295.7,12.38,263.17,12.16,35086.63,1623.17
+1cc_4x8x48x1_24-07-13_17-34-34,192.38,11.44,159.12,11.4,116426.73,9125.14

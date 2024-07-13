@@ -1,0 +1,50 @@
+INFO - Running compliance on file: /results/240713173428910185804_01.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240713173428910185804_02.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240713173428910185804_03.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240713173428910185804_04.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240713173428910185804_05.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240713173428910185804_06.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240713173428910185804_07.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240713173428910185804_08.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240713173428910185804_09.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240713173428910185804_10.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
