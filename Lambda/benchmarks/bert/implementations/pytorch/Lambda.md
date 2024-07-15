@@ -61,8 +61,8 @@ sudo chmod 1777 /run/enroot
 ```
 # Build the container and push to local registry
 export HEADNODE_HOSTNAME=$(hostname)
-docker build --build-arg CACHEBUST=$(date +%s) -t $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-24.05:language_model .
-docker push $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-24.05:language_model
+docker build --build-arg CACHEBUST=$(date +%s) -t $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-bert:latest .
+docker push $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-bert:latest
 
 # Verify if the image has been pushed to the registry
 curl http://$HEADNODE_HOSTNAME:5000/v2/_catalog
@@ -74,7 +74,6 @@ https://github.com/scipy/scipy/issues/20813
 ## Prepare dataset
 
 ```
-# Use the priviate IP of the 
 export HEADNODE_HOSTNAME=$(hostname)
 export DATAPATH=/home/ubuntu/ml-1cc/data/mlperf/bert
 sudo mkdir -p $DATAPATH

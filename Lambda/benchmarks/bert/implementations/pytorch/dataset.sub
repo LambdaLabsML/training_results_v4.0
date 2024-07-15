@@ -1,8 +1,8 @@
 #!/bin/bash
-# SBATCH --job-name=dataset
-# SBATCH --nodes=1
-# SBATCH --ntasks-per-node=1
-# SBATCH --exclusive
+#SBATCH --job-name=dataset
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --exclusive
 
 # echo ${DATAPATH}
 
@@ -26,7 +26,7 @@ export NCCL_IB_PCI_RELAXED_ORDERING=1
 
 export HOME=/home/ubuntu
 
-CONT="local/mlperf-nvidia-24.05:language_model"
+CONT="local/mlperf-nvidia-bert:latest"
 
 echo $HEADNODE_HOSTNAME
 

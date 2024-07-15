@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --exclusive
 #SBATCH --mem=0
-#SBATCH --nodelist=ml-512-node-061,ml-512-node-062,ml-512-node-063,ml-512-node-064    # Specific nodes
+#SBATCH --nodelist=ml-512-node-063    # Specific nodes
 
 # Copyright (c) 2019-2023 NVIDIA CORPORATION. All rights reserved.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -235,79 +235,12 @@ echo MELLANOX_VISIBLE_DEVICES="${MELLANOX_VISIBLE_DEVICES:-}"
 srun --ntasks="$((SLURM_JOB_NUM_NODES))" --container-mounts=/dev/infiniband/uverbs0:/dev/infiniband/uverbs0 --container-image="${CONT_FILE}" --container-name="${_cont_name}" true
 
 
-# # NCCL_TEST
-# srun -N1 -n1 --container-mounts=/dev/infiniband/uverbs0:/dev/infiniband/uverbs0 --container-name="${_cont_name}" ibv_devinfo --list
-# srun -N1 -n1 --container-mounts=/dev/infiniband/uverbs0:/dev/infiniband/uverbs0 --container-name="${_cont_name}" nvidia-smi topo -m
+# NCCL_TEST
+srun -N1 -n1 --container-mounts=/dev/infiniband/uverbs0:/dev/infiniband/uverbs0 --container-name="${_cont_name}" ibv_devinfo --list
+srun -N1 -n1 --container-mounts=/dev/infiniband/uverbs0:/dev/infiniband/uverbs0 --container-name="${_cont_name}" nvidia-smi topo -m
 
-# srun -l --mpi="pmix" \
-#      --container-name="${_cont_name}" \
-#      --container-mounts=${_cont_mounts} \
-#      all_reduce_perf_mpi -b 21M -e 672M -d half -G 1 -f 2
+srun -l --mpi="pmix" \
+     --container-name="${_cont_name}" \
+     --container-mounts=${_cont_mounts} \
+     all_reduce_perf_mpi -b 21M -e 672M -d half -G 1 -f 2
 
-
-#ssh to nodes for power measurements
-NODELIST=$(scontrol show hostnames ${SLURM_JOB_NODELIST})
-NODELIST=(${NODELIST[*]})
-if [ -f "$POWERCMDDIR/power_monitor.sh"  ]; then
-    ( umask 0002; mkdir -p "${ABSLOGDIR}" )
-    for i in "${NODELIST[@]}"
-    do
-        ssh $i 'export NODENAME='"'$i'"';export ABSLOGDIR='"'$ABSLOGDIR'"';export SLURM_JOB_NODELIST='"'$SLURM_JOB_NODELIST'"';export SLURM_JOB_ID='"'$SLURM_JOB_ID'"';POWERCMDDIR='"'$POWERCMDDIR'"';bash ${POWERCMDDIR}/power_monitor.sh' &
-#	break
-    done
-fi 
-
-# Set GPC clock for MaxQ and minEDP
-if [[ "${SET_MAXQ_CLK}" == "1" ]] || [[ "${SET_MINEDP_CLK}" == "1" ]]; then
-	if [[ "${SET_MAXQ_CLK}" == "1" ]]; then
-		GPCCLK=${MAXQ_CLK}
-	fi
-	if [[ "${SET_MINEDP_CLK}" == "1" ]]; then
-		GPCCLK=${MINEDP_CLK}
-	fi
-	for i in "${NODELIST[@]}"
-	do
-		ssh $i 'export GPCCLK='"'$GPCCLK'"';sudo nvidia-smi -lgc ${GPCCLK}'
-	done
-fi
-
-# Run experiments
-for _experiment_index in $(seq -w 1 "${NEXP}"); do
-    (
-        echo "Beginning trial ${_experiment_index} of ${NEXP}"
-	echo ":::DLPAL ${CONT} ${SLURM_JOB_ID} ${SLURM_JOB_NUM_NODES} ${SLURM_JOB_NODELIST} ${MLPERF_CLUSTER_NAME} ${DGXSYSTEM}"
-
-        # Clear caches
-        if [ "${CLEAR_CACHES}" -eq 1 ]; then
-            srun --ntasks="${SLURM_JOB_NUM_NODES}" bash -c "echo -n 'Clearing cache on ' && hostname && sync && ${DROPCACHE_CMD}"
-            srun --ntasks="${SLURM_JOB_NUM_NODES}" --container-name="${_cont_name}" python -c "
-from mlperf_logger import mllogger
-mllogger.event(key=mllogger.constants.CACHE_CLEAR, value=True)"
-        fi
-
-        # Run experiment
-	srun -l --mpi="${SLURM_MPI_TYPE:-pmix}" --ntasks="$(( SLURM_JOB_NUM_NODES * DGXNGPU ))" --ntasks-per-node="${DGXNGPU}" \
-	     --container-name="${_cont_name}" --container-mounts="${_cont_mounts}" \
-	     --container-workdir=${WORK_DIR} \
-	     slurm2pytorch "./run_and_time.sh"
-    ) |& tee "${LOG_FILE_BASE}_${_experiment_index}.log"
-    # compliance checker
-    if [ "${CHECK_COMPLIANCE}" -eq 1 ]; then
-      srun --ntasks=1 --nodes=1 --container-name="${_cont_name}" \
-           --container-mounts="$(realpath ${LOGDIR}):/results"   \
-           --container-workdir="/results"                        \
-           python3 -m mlperf_logging.compliance_checker --usage training \
-           --ruleset "${MLPERF_RULESET}"                                 \
-           --log_output "/results/compliance_${DATESTAMP}.out"           \
-           "/results/${LOG_BASE}_${_experiment_index}.log" \
-    || true
-    fi
-
-    if [ "${JET:-0}" -eq 1 ]; then
-      JET_CREATE="${JET_CREATE:-} --data workload.spec.nodes=${DGXNNODES} --data workload.spec.name=${MODEL_NAME}_${MODEL_FRAMEWORK}_${DGXSYSTEM} --data workload.key=${MODEL_NAME}_${MODEL_FRAMEWORK}_${DGXSYSTEM} --mllogger "
-      srun -N1 -n1 --container-name="${_cont_name}" --container-mounts="${_cont_mounts}" bash -c "${JET_CREATE} /results/${LOG_BASE}_${_experiment_index}.log && ${JET_UPLOAD}"
-    fi
-
-done
-
-# Cleanup: performed by cleanup_containers (see above) on EXIT trap
