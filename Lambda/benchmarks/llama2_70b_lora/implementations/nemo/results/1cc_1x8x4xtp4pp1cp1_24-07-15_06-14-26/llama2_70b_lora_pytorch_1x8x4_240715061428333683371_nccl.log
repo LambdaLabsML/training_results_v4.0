@@ -1,0 +1,22 @@
++ srun --mpi=pmix --ntasks=8 --ntasks-per-node=8 --container-mounts=/home/ubuntu/ml-1cc/data/mlperf/llama2_70b_lora/data:/data:ro,/home/ubuntu/ml-1cc/data/mlperf/llama2_70b_lora/ckpt:/ckpt:ro,./results/1cc_1x8x4xtp4pp1cp1_24-07-15_06-14-26:/results:rw,/dev/infiniband/uverbs0:/dev/infiniband/uverbs0,/dev/infiniband/uverbs1:/dev/infiniband/uverbs1,/dev/infiniband/uverbs2:/dev/infiniband/uverbs2,/dev/infiniband/uverbs3:/dev/infiniband/uverbs3,/dev/infiniband/uverbs4:/dev/infiniband/uverbs4,/dev/infiniband/uverbs5:/dev/infiniband/uverbs5,/dev/infiniband/uverbs6:/dev/infiniband/uverbs6,/dev/infiniband/uverbs7:/dev/infiniband/uverbs7 --container-name=llama2_70b_lora_117 all_reduce_perf_mpi -b 62M -e 62M -d half
+# nThread 1 nGpus 1 minBytes 65011712 maxBytes 65011712 step: 1048576(bytes) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0
+#
+# Using devices
+#  Rank  0 Group  0 Pid 1444448 on ml-512-node-063 device  0 [0x63] NVIDIA H100 80GB HBM3
+#  Rank  1 Group  0 Pid 1444449 on ml-512-node-063 device  1 [0x6b] NVIDIA H100 80GB HBM3
+#  Rank  2 Group  0 Pid 1444450 on ml-512-node-063 device  2 [0x71] NVIDIA H100 80GB HBM3
+#  Rank  3 Group  0 Pid 1444451 on ml-512-node-063 device  3 [0x79] NVIDIA H100 80GB HBM3
+#  Rank  4 Group  0 Pid 1444452 on ml-512-node-063 device  4 [0x7f] NVIDIA H100 80GB HBM3
+#  Rank  5 Group  0 Pid 1444453 on ml-512-node-063 device  5 [0x87] NVIDIA H100 80GB HBM3
+#  Rank  6 Group  0 Pid 1444454 on ml-512-node-063 device  6 [0x8d] NVIDIA H100 80GB HBM3
+#  Rank  7 Group  0 Pid 1444455 on ml-512-node-063 device  7 [0x95] NVIDIA H100 80GB HBM3
+NCCL version 2.21.5+cuda12.4
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw #wrong     time   algbw   busbw #wrong
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)            (us)  (GB/s)  (GB/s)       
+    65011712      32505856      half     sum      -1    353.6  183.84  321.73      0    350.4  185.53  324.68      0
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 323.201 
+#
+
