@@ -87,6 +87,15 @@ sudo chmod -R 777 $MODELPATH
 sbatch -N1 --ntasks-per-node=1 --export=HEADNODE_HOSTNAME=$HEADNODE_HOSTNAME,DATAPATH=$DATAPATH,MODELPATH=$MODELPATH dataset.sub
 ```
 
+Once done you should see following folders:
+
+```
+ubuntu@ml-512-head-002:~/ml-1cc/data/mlperf$ tree llama2_70b_lora/ -L 1
+llama2_70b_lora/
+├── ckpt
+└── data
+```
+
 ## Run training
 
 ```
