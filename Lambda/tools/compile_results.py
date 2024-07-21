@@ -73,8 +73,8 @@ def extract_metrics(log_file, name):
         raw_train_time = re.findall(r"'raw_train_time': (\d+\.\d+)", content)
     elif name == "llama2-70b":
         e2e_time = [llama2_70b_e2e_time(log_file)]
-        training_sequences_per_second = [llama2_70b_raw_training_time(log_file)]
-        raw_train_time = llama2_70b_throughput(log_file)
+        training_sequences_per_second = llama2_70b_throughput(log_file)
+        raw_train_time = [llama2_70b_raw_training_time(log_file)]
     else:
         e2e_time = [0]
         training_sequences_per_second = [0]

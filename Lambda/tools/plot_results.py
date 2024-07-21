@@ -47,7 +47,6 @@ if __name__ == "__main__":
     s_std = 2
     df = pd.read_csv(csv_file)
     
-    print('-----------------------------------')
     plot_metric(df, name, s_std, 'e2e_time_mean', 'e2e_time_std', 'e2e_time', output_path)
     plot_metric(df, name, s_std, 'raw_train_time_mean', 'raw_train_time_std', 'raw_train_time', output_path)
     plot_metric(df, name, s_std, 'training_sequences_per_second_mean', 'training_sequences_per_second_std', 'training_sequences_per_second', output_path)
