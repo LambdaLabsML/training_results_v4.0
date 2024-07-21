@@ -1,4 +1,4 @@
 folder,e2e_time_mean,e2e_time_std,raw_train_time_mean,raw_train_time_std,training_sequences_per_second_mean,training_sequences_per_second_std
-1cc_1x8x4xtp4pp1cp1_24-07-15_06-14-26,42.52,3.69,1.93,0.02,31.98,1.96
-1cc_2x8x4xtp4pp1cp2_24-07-16_18-24-51,34.07,0.1,2.63,0.03,23.43,0.1
-1cc_4x8x4xtp4pp1cp2_24-07-16_19-08-25,31.02,0.1,5.14,0.1,15.6,0.1
+1cc_1x8x4xtp4pp1cp1_24-07-15_06-14-26,42.52,3.69,31.98,1.96,1.93,0.02
+1cc_2x8x4xtp4pp1cp2_24-07-16_18-24-51,34.07,0.1,23.43,0.1,2.63,0.03
+1cc_4x8x4xtp4pp1cp2_24-07-16_19-08-25,31.02,0.1,15.6,0.1,5.14,0.1
