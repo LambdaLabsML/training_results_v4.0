@@ -27,8 +27,7 @@ def llama2_70b_raw_training_time(file_path):
                 break
 
     if time_ms_samples_count_0 is None or time_ms_status_success is None:
-        raise ValueError(
-            "Required lines with 'samples_count': 0 or 'status': 'success' not found.")
+        return -1
 
     # Convert milliseconds to minutes and compute the difference
     time_difference = (time_ms_status_success - time_ms_samples_count_0) / 60000.0
@@ -50,9 +49,12 @@ def llama2_70b_e2e_time(file_path):
     end_time_str = second_last_line.split(' ')[-3] + ' ' + second_last_line.split(' ')[-2] + ' ' + second_last_line.split(' ')[-1]
 
     # Convert the time strings to datetime objects
-    start_time = datetime.datetime.strptime(start_time_str, '%Y-%m-%d %I:%M:%S %p')
-    end_time = datetime.datetime.strptime(end_time_str, '%Y-%m-%d %I:%M:%S %p')
-
+    try:
+        start_time = datetime.datetime.strptime(start_time_str, '%Y-%m-%d %I:%M:%S %p')
+        end_time = datetime.datetime.strptime(end_time_str, '%Y-%m-%d %I:%M:%S %p')
+    except ValueError:
+        return -1
+    
     # Compute the difference in minutes
     time_difference = (end_time - start_time).total_seconds() / 60.0
     return time_difference
@@ -72,7 +74,7 @@ def extract_metrics(log_file, name):
         training_sequences_per_second = re.findall(r"'training_sequences_per_second': (\d+\.\d+)", content)
         raw_train_time = re.findall(r"'raw_train_time': (\d+\.\d+)", content)
     elif name == "llama2-70b":
-        e2e_time = [llama2_70b_e2e_time(log_file)]
+        e2e_time = [llama2_70b_e2e_time(log_file)]      
         training_sequences_per_second = llama2_70b_throughput(log_file)
         raw_train_time = [llama2_70b_raw_training_time(log_file)]
     else:
@@ -106,6 +108,10 @@ def process_folder(folder, name):
 
     if not e2e_times or not training_sequences_per_seconds or not raw_train_times:
         return None
+
+    e2e_times = [x for x in e2e_times if x > 0]
+    training_sequences_per_seconds = [x for x in training_sequences_per_seconds if x > 0]
+    raw_train_times = [x for x in raw_train_times if x > 0]
 
     e2e_time_mean, e2e_time_std = compute_mean_std(e2e_times)
     training_sequences_per_second_mean, training_sequences_per_second_std = compute_mean_std(training_sequences_per_seconds)

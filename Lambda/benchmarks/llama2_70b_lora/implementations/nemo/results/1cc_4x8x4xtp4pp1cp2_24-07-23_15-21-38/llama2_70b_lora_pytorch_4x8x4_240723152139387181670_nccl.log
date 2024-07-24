@@ -1,0 +1,110 @@
++ srun --mpi=pmix --ntasks=32 --ntasks-per-node=8 --container-mounts=/home/ubuntu/ml-1cc/data/mlperf/llama2_70b_lora/data:/data:ro,/home/ubuntu/ml-1cc/data/mlperf/llama2_70b_lora/ckpt:/ckpt:ro,./results/1cc_4x8x4xtp4pp1cp2_24-07-23_15-21-38:/results:rw,/dev/infiniband/uverbs0:/dev/infiniband/uverbs0,/dev/infiniband/uverbs1:/dev/infiniband/uverbs1,/dev/infiniband/uverbs2:/dev/infiniband/uverbs2,/dev/infiniband/uverbs3:/dev/infiniband/uverbs3,/dev/infiniband/uverbs4:/dev/infiniband/uverbs4,/dev/infiniband/uverbs5:/dev/infiniband/uverbs5,/dev/infiniband/uverbs6:/dev/infiniband/uverbs6,/dev/infiniband/uverbs7:/dev/infiniband/uverbs7 --container-name=llama2_70b_lora_174 all_reduce_perf_mpi -b 62M -e 62M -d half
+# nThread 1 nGpus 1 minBytes 65011712 maxBytes 65011712 step: 1048576(bytes) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0
+#
+# Using devices
+#  Rank  0 Group  0 Pid 2541199 on ml-512-node-057 device  0 [0x63] NVIDIA H100 80GB HBM3
+#  Rank  1 Group  0 Pid 2541200 on ml-512-node-057 device  1 [0x6b] NVIDIA H100 80GB HBM3
+#  Rank  2 Group  0 Pid 2541201 on ml-512-node-057 device  2 [0x71] NVIDIA H100 80GB HBM3
+#  Rank  3 Group  0 Pid 2541202 on ml-512-node-057 device  3 [0x79] NVIDIA H100 80GB HBM3
+#  Rank  4 Group  0 Pid 2541203 on ml-512-node-057 device  4 [0x7f] NVIDIA H100 80GB HBM3
+#  Rank  5 Group  0 Pid 2541204 on ml-512-node-057 device  5 [0x87] NVIDIA H100 80GB HBM3
+#  Rank  6 Group  0 Pid 2541205 on ml-512-node-057 device  6 [0x8d] NVIDIA H100 80GB HBM3
+#  Rank  7 Group  0 Pid 2541206 on ml-512-node-057 device  7 [0x95] NVIDIA H100 80GB HBM3
+#  Rank  8 Group  0 Pid 2199484 on ml-512-node-058 device  0 [0x63] NVIDIA H100 80GB HBM3
+#  Rank  9 Group  0 Pid 2199485 on ml-512-node-058 device  1 [0x6b] NVIDIA H100 80GB HBM3
+#  Rank 10 Group  0 Pid 2199486 on ml-512-node-058 device  2 [0x71] NVIDIA H100 80GB HBM3
+#  Rank 11 Group  0 Pid 2199487 on ml-512-node-058 device  3 [0x79] NVIDIA H100 80GB HBM3
+#  Rank 12 Group  0 Pid 2199488 on ml-512-node-058 device  4 [0x7f] NVIDIA H100 80GB HBM3
+#  Rank 13 Group  0 Pid 2199489 on ml-512-node-058 device  5 [0x87] NVIDIA H100 80GB HBM3
+#  Rank 14 Group  0 Pid 2199490 on ml-512-node-058 device  6 [0x8d] NVIDIA H100 80GB HBM3
+#  Rank 15 Group  0 Pid 2199491 on ml-512-node-058 device  7 [0x95] NVIDIA H100 80GB HBM3
+#  Rank 16 Group  0 Pid 2535407 on ml-512-node-059 device  0 [0x63] NVIDIA H100 80GB HBM3
+#  Rank 17 Group  0 Pid 2535408 on ml-512-node-059 device  1 [0x6b] NVIDIA H100 80GB HBM3
+#  Rank 18 Group  0 Pid 2535409 on ml-512-node-059 device  2 [0x71] NVIDIA H100 80GB HBM3
+#  Rank 19 Group  0 Pid 2535410 on ml-512-node-059 device  3 [0x79] NVIDIA H100 80GB HBM3
+#  Rank 20 Group  0 Pid 2535411 on ml-512-node-059 device  4 [0x7f] NVIDIA H100 80GB HBM3
+#  Rank 21 Group  0 Pid 2535412 on ml-512-node-059 device  5 [0x87] NVIDIA H100 80GB HBM3
+#  Rank 22 Group  0 Pid 2535413 on ml-512-node-059 device  6 [0x8d] NVIDIA H100 80GB HBM3
+#  Rank 23 Group  0 Pid 2535414 on ml-512-node-059 device  7 [0x95] NVIDIA H100 80GB HBM3
+#  Rank 24 Group  0 Pid 2333991 on ml-512-node-060 device  0 [0x63] NVIDIA H100 80GB HBM3
+#  Rank 25 Group  0 Pid 2333992 on ml-512-node-060 device  1 [0x6b] NVIDIA H100 80GB HBM3
+#  Rank 26 Group  0 Pid 2333993 on ml-512-node-060 device  2 [0x71] NVIDIA H100 80GB HBM3
+#  Rank 27 Group  0 Pid 2333994 on ml-512-node-060 device  3 [0x79] NVIDIA H100 80GB HBM3
+#  Rank 28 Group  0 Pid 2333995 on ml-512-node-060 device  4 [0x7f] NVIDIA H100 80GB HBM3
+#  Rank 29 Group  0 Pid 2333996 on ml-512-node-060 device  5 [0x87] NVIDIA H100 80GB HBM3
+#  Rank 30 Group  0 Pid 2333997 on ml-512-node-060 device  6 [0x8d] NVIDIA H100 80GB HBM3
+#  Rank 31 Group  0 Pid 2333998 on ml-512-node-060 device  7 [0x95] NVIDIA H100 80GB HBM3
+NCCL version 2.21.5+cuda12.4
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw #wrong     time   algbw   busbw #wrong
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)            (us)  (GB/s)  (GB/s)       
+    65011712      32505856      half     sum      -1    575.4  112.99  218.91      0    574.2  113.22  219.37      0
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 219.141 
+#
+[1721748271.385596] [ml-512-node-057:2541199:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.385615] [ml-512-node-057:2541199:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.385661] [ml-512-node-057:2541200:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.385697] [ml-512-node-057:2541200:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.385646] [ml-512-node-057:2541201:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.385689] [ml-512-node-057:2541201:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.385660] [ml-512-node-057:2541204:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.385693] [ml-512-node-057:2541204:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.385721] [ml-512-node-057:2541205:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.385751] [ml-512-node-057:2541205:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.385813] [ml-512-node-057:2541202:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.385854] [ml-512-node-057:2541202:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.385834] [ml-512-node-057:2541206:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.385871] [ml-512-node-057:2541206:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.385871] [ml-512-node-057:2541203:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.385903] [ml-512-node-057:2541203:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.423306] [ml-512-node-059:2535408:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.423344] [ml-512-node-059:2535408:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.423280] [ml-512-node-059:2535409:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.423315] [ml-512-node-059:2535409:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.423314] [ml-512-node-059:2535410:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.423347] [ml-512-node-059:2535410:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.423197] [ml-512-node-059:2535411:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.423238] [ml-512-node-059:2535411:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.423281] [ml-512-node-059:2535412:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.423315] [ml-512-node-059:2535412:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.423327] [ml-512-node-059:2535413:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.423353] [ml-512-node-059:2535413:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.423389] [ml-512-node-059:2535407:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.423421] [ml-512-node-059:2535407:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.423505] [ml-512-node-059:2535414:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.423545] [ml-512-node-059:2535414:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.458238] [ml-512-node-058:2199491:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.458277] [ml-512-node-058:2199491:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.458370] [ml-512-node-058:2199485:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.458402] [ml-512-node-058:2199485:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.458456] [ml-512-node-058:2199489:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.458487] [ml-512-node-058:2199489:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.458507] [ml-512-node-058:2199484:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.458541] [ml-512-node-058:2199484:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.458515] [ml-512-node-058:2199486:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.458552] [ml-512-node-058:2199486:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.458653] [ml-512-node-058:2199487:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.458691] [ml-512-node-058:2199487:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.458725] [ml-512-node-058:2199490:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.458761] [ml-512-node-058:2199490:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.458758] [ml-512-node-058:2199488:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.458797] [ml-512-node-058:2199488:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.464332] [ml-512-node-060:2333991:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.464382] [ml-512-node-060:2333991:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.464442] [ml-512-node-060:2333993:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.464475] [ml-512-node-060:2333993:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.464356] [ml-512-node-060:2333994:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.464384] [ml-512-node-060:2333994:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.464446] [ml-512-node-060:2333998:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.464483] [ml-512-node-060:2333998:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.464533] [ml-512-node-060:2333992:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.464566] [ml-512-node-060:2333992:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.464488] [ml-512-node-060:2333995:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.464518] [ml-512-node-060:2333995:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.464492] [ml-512-node-060:2333996:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.464538] [ml-512-node-060:2333996:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+[1721748271.464509] [ml-512-node-060:2333997:0]     ucc_context.c:906  UCC  WARN  tl ctx shm is still in use
+[1721748271.464550] [ml-512-node-060:2333997:0]     ucc_context.c:906  UCC  WARN  tl ctx ucp is still in use
+
