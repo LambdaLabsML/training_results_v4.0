@@ -67,3 +67,6 @@ COPY . .
 # install LDM
 RUN pip install -r requirements.txt
 RUN pip install transformers==4.40.2
+RUN pip install huggingface-hub==0.23.5
+# Pin pytorch-lightning to 2.2.2, newer version hangs at the end of training
+RUN pip install pytorch-lightning==2.2.2 

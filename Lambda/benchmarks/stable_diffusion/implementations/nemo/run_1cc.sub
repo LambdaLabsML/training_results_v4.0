@@ -14,7 +14,7 @@
 # limitations under the License.
 #SBATCH --exclusive
 #SBATCH --mem=0
-#SBATCH --nodelist=ml-512-node-061,ml-512-node-062,ml-512-node-063,ml-512-node-064    # Specific nodes
+#SBATCH --nodelist=ml-512-node-057,ml-512-node-058,ml-512-node-059,ml-512-node-060    # Specific nodes
 
 set -euxo pipefail
 
@@ -114,8 +114,6 @@ fi
 
 readonly _logfile_base="${LOGDIR}/${LOGBASE}"
 readonly _cont_name="${MODEL_NAME}_${SLURM_JOB_ID}"
-# _cont_mounts="${LOGDIR}:/results,${DATADIR}:/datasets,${CHECKPOINTS}:/checkpoints,${NEMOLOGS}:/nemologs"
-# mkdir -p ${NEMOLOGS}
 
 _cont_mounts="${LOGDIR}:/results,${DATADIR}:/datasets,${CHECKPOINTS}:/checkpoints,${NEMOLOGS}:/nemologs,\
 /dev/infiniband/uverbs0:/dev/infiniband/uverbs0,\
@@ -134,7 +132,7 @@ export NCCL_IB_HCA='=mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7'
 export NCCL_IB_PCI_RELAXED_ORDERING=1
 export NCCL_SOCKET_IFNAME=eno1
 
-cont_mounts_to_verify="/datasets,/checkpoints"
+cont_mounts_to_verify="/datasets,/checkpoints,/nemologs,/results"
 
 if [ "${API_LOGGING:-}" -eq 1 ]; then
     API_LOG_DIR=${API_LOG_DIR}/${MODEL_FRAMEWORK}/${MODEL_NAME}/${DGXSYSTEM}

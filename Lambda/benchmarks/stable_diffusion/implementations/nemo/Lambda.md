@@ -1,4 +1,4 @@
-# Running mlcommon BERT benchmark on Lambda 1-Click Clusters
+# Running mlcommon Stable Diffusion benchmark on Lambda 1-Click Clusters
 
 ## Install SLURM/Enroot/Pyxis/Docker registry
 These are pre-installed by Lambda engineers. 
@@ -72,7 +72,7 @@ curl http://$HEADNODE_HOSTNAME:5000/v2/_catalog
 ## Prepare dataset
 
 ```
-export HEADNODE_HOSTNAME=$(hostname)
+export HEADNODE_HOSTNAME=ml-512-head-001
 export DATAPATH=/home/ubuntu/ml-1cc/data/mlperf/stable_diffusion
 sudo mkdir -p $DATAPATH
 sudo chmod -R 777 $DATAPATH
@@ -105,16 +105,20 @@ stable_diffusion/
 
 ```
 # Single node
-export HEADNODE_HOSTNAME=$(hostname) && \
+export HEADNODE_HOSTNAME=ml-512-head-001 && \
 source ./config_1cc_01x08x64.sh && \
-sbatch -N1 --ntasks-per-node=8 --gres=gpu:8 run_1cc_nccl.sub
+sbatch -N1 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 
 # 2x nodes
-
+export HEADNODE_HOSTNAME=ml-512-head-001 && \
+source ./config_1cc_02x08x32.sh && \
+sbatch -N2 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 
 
 # 4x nodes
-
+export HEADNODE_HOSTNAME=ml-512-head-001 && \
+source ./config_1cc_04x08x32.sh && \
+sbatch -N4 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 ```
 
 You should see training finished with log like this
@@ -133,4 +137,14 @@ Miss in run_1cc.sub ?
 ```
 #SBATCH --exclusive
 #SBATCH --mem=0
+```
+
+2. __ImportError: cannot import name 'ModelFilter' from 'huggingface_hub' (/usr/local/lib/python3.10/dist-packages/huggingface_hub/__init__.py)__
+
+Downgrade huggingface-hub to 0.23.5 in dockerfile. See this [recent breaking change](https://github.com/huggingface/huggingface_hub/commit/bb38f9422cb88ba02694c87fb5979cc48ecef8a0).
+
+3. __Benchmark freezes after trainer.fit(model) completes__
+
+```
+pytorch-lightning==2.2.2 
 ```

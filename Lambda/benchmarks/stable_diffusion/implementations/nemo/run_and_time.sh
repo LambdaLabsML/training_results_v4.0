@@ -88,8 +88,8 @@ if [ -z "$RANDOM" ]; then
 fi
 
 echo "RANDOM_SEED=${RANDOM_SEED}"
-mkdir -p "/tmp/nemologs"
-
+TMP_NEMOLOGS="/tmp/nemologs"
+mkdir -p ${TMP_NEMOLOGS}
 
 ${LOGGER:-} ${CMD[@]} main.py \
     "trainer.num_nodes=${DGXNNODES}" \
@@ -102,7 +102,7 @@ ${LOGGER:-} ${CMD[@]} main.py \
     "model.global_batch_size=$((DGXNGPU * DGXNNODES * BATCHSIZE))" \
     "model.unet_config.use_flash_attention=${FLASH_ATTENTION}" \
     "model.capture_cudagraph_iters=${CAPTURE_CUDAGRAPH_ITERS}" \
-    "exp_manager.exp_dir=/tmp/nemologs" \
+    "exp_manager.exp_dir=${TMP_NEMOLOGS}" \
     "exp_manager.checkpoint_callback_params.every_n_train_steps=${CHECKPOINT_STEPS}" \
     "name=${EXP_NAME}" \
     "model.seed=${RANDOM_SEED}" \

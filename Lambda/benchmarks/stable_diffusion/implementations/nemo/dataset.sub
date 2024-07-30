@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gpus-per-node=8
 #SBATCH --exclusive
-#SBATCH --nodelist=ml-512-node-061    # Specific nodes
+#SBATCH --nodelist=ml-512-node-057,ml-512-node-058,ml-512-node-059,ml-512-node-060    # Specific nodes
 
 echo ${DATAPATH}
 
@@ -46,7 +46,7 @@ srun -l --mpi="pmix" \
 srun -l --mpi="pmix" \
      --container-image="${HEADNODE_HOSTNAME}:5000#${CONT}" \
      --container-mounts=${_cont_mounts} \
-     /bin/bash -c "ulimit -n 65536 && bash ./scripts/datasets/coco2014-validation-download-stats.sh --output-dir /datasets/coco2014"
+     /bin/bash -c "ulimit -n 65536 && bash ./scripts/datasets/coco2014-validation-download-stats.sh --output-dir /datasets/coco2014 && mv /datasets/coco2014/val2014_30k_stats.npz /datasets/coco2014/val2014_512x512_30k_stats.npz"
 
 srun -l --mpi="pmix" \
      --container-image="${HEADNODE_HOSTNAME}:5000#${CONT}" \

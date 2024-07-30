@@ -12,19 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export DGXNNODES=1
+export DGXNNODES=4
 export DGXNGPU=8
-export BATCHSIZE=64
+export BATCHSIZE=32
+export CONFIG_MAX_STEPS=3500
+export INFER_START_STEP=2000
 
-export CONFIG_MAX_STEPS=6000
-export INFER_START_STEP=4000
-export WALLTIME=120
+export BASE_LR="0.00000012"
 
-export DGXNSOCKET=2
-export DGXHT=2         # HT is on is 2, HT off is 1
+export WALLTIME=60
+
+# Set clocks and walltime for maxQ and minEDP runs
+if [[ "${SET_MAXQ_CLK:-0}" == "1" ]]; then
+  export MAXQ_CLK=1050
+  WALLTIME_MINUTES=$(expr ${WALLTIME_MINUTES} + ${WALLTIME_MINUTES} / 2) # 50% longer walltime
+elif [[ "${SET_MINEDP_CLK:-0}" == "1" ]]; then
+  export MINEDP_CLK=1290
+  WALLTIME_MINUTES=$(expr ${WALLTIME_MINUTES} + ${WALLTIME_MINUTES} / 3) # 33% longer walltime
+fi
 
 timestamp=$(date +'%y-%m-%d_%H-%M-%S')
-export LOGDIR=./results/1cc_01x08x64_${timestamp}
+export LOGDIR=./results/1cc_04x08x32_${timestamp}
 export NEMOLOGS=${LOGDIR}/nemologs
 mkdir -p ${LOGDIR}
 mkdir -p ${NEMOLOGS}
