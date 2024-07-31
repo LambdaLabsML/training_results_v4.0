@@ -1,4 +1,4 @@
-# Running mlcommon BERT benchmark on Lambda 1-Click Clusters
+# Running mlcommon Llama2_70b_lora benchmark on Lambda 1-Click Clusters
 
 ## Install SLURM/Enroot/Pyxis/Docker registry
 These are pre-installed by Lambda engineers. 
