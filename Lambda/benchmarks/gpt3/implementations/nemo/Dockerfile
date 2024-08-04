@@ -131,3 +131,5 @@ RUN echo "Cache busting argument: $CACHEBUST"
 
 COPY . .
 ENV PYTHONPATH "/workspace/llm:/workspace/NeMo:${PYTHONPATH}"
+
+RUN pip install huggingface-hub==0.22.0

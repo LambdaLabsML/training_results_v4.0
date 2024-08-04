@@ -1,4 +1,4 @@
-# Running mlcommon BERT benchmark on Lambda 1-Click Clusters
+# Running mlcommon GPT3 benchmark on Lambda 1-Click Clusters
 
 ## Install SLURM/Enroot/Pyxis/Docker registry
 These are pre-installed by Lambda engineers. 
@@ -89,8 +89,16 @@ tar -xvf dataset_c4_spm.tar
 cd /home/ubuntu/ml-1cc/data/mlperf/gpt3 && mkdir checkpoint_megatron_fp32 && cd checkpoint_megatron_fp32 && \
 rclone copy mlc-training:mlcommons-training-wg-public/gpt3/megatron-lm/checkpoint_megatron_fp32.tar ./ -P
 
+# Follow guide here
+# https://github.com/mlcommons/training/blob/master/large_language_model/megatron-lm/README.md#bf16-training
 cd /home/ubuntu/ml-1cc/data/mlperf/gpt3 && mkdir checkpoint_nemo_bf16 && cd checkpoint_nemo_bf16 && \
 rclone copy mlc-training:mlcommons-training-wg-public/gpt3/megatron-lm/checkpoint_nemo_bf16.tar ./ -P
+
+tar -xvf checkpoint_nemo_bf16.tar
+
+# https://github.com/mlcommons/training_results_v4.0/tree/6fe954378efe4a1a1bd665550b18ff8f26018def/NVIDIA/benchmarks/gpt3/implementations/nemo#model-checkpoint
+# "The postprocessing step can be skipped - the gpt3/megatron-lm/checkpoint_nemo_bf16.tar is already NeMo-compatible after unpacking."
+# python ./scripts/json_to_torch.py -i ./scripts/common_bf16.json -o /home/ubuntu/ml-1cc/data/mlperf/gpt3/ckpt4000-consumed_samples=0/common.pt
 
 ```
 
@@ -98,14 +106,38 @@ rclone copy mlc-training:mlcommons-training-wg-public/gpt3/megatron-lm/checkpoin
 
 ```
 # Single node
-
+export HEADNODE_HOSTNAME=ml-512-head-001 && \
+source ./config_1cc_1x8x128x2x4_mbs2.sh && \
+sbatch -N1 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 
 # 2x nodes
 
 
 # 4x nodes
+export HEADNODE_HOSTNAME=ml-512-head-001 && \
+source ./config_1cc_4x8x128x2x4_mbs2.sh && \
+sbatch -N4 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
+
+
+# 8x nodes
+export HEADNODE_HOSTNAME=ml-512-head-001 && \
+source ./config_1cc_8x8x2x4x4_mbs2.sh && \
+sbatch -N8 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 ```
 
 You should see training finished with log like this
 ```
+```
+
+# Troubleshoot
+
+1. __srun: unrecognized option '--container-env=MASTER_PORT,MASTER_ADDR,NCCL_SHARP_GROUP_SIZE_THRESH'__
+
+Change `--container-env=MASTER_PORT,MASTER_ADDR,NCCL_SHARP_GROUP_SIZE_THRESH` to `--export=ALL,MASTER_PORT=${MASTER_PORT},MASTER_ADDR=${MASTER_ADDR},NCCL_SHARP_GROUP_SIZE_THRESH=${NCCL_SHARP_GROUP_SIZE_THRESH}`
+
+
+2. __ImportError: cannot import name 'ModelFilter' from 'huggingface_hub'__
+
+```
+pip install huggingface-hub==0.22.0
 ```
