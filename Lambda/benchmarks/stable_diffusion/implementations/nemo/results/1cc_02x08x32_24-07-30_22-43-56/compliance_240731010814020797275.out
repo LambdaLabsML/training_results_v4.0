@@ -1,0 +1,10 @@
+INFO - Running compliance on file: /results/240731010814020797275_1.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240731010814020797275_2.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+INFO - SUCCESS

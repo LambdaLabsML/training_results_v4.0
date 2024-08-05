@@ -83,4 +83,4 @@ export CONT="$(hostname):5000#local/mlperf-nvidia-stable_diffusion-pyt:latest"
 export DATADIR="/home/ubuntu/ml-1cc/data/mlperf/stable_diffusion"
 export CHECKPOINTS="/home/ubuntu/ml-1cc/data/mlperf/stable_diffusion"
 
-export NEXP=1
+export NEXP=3

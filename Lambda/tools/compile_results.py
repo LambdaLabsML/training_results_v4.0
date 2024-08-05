@@ -66,6 +66,87 @@ def llama2_70b_throughput(file_path):
     training_sequences_per_second = re.findall(r"\"throughput\": (\d+\.\d+)", content) 
     return training_sequences_per_second
 
+
+def stable_diffusion_e2e_time(file_path, encoding='ISO-8859-1'):
+
+    with open(file_path, 'r', encoding=encoding) as file:
+        lines = file.readlines()
+    last_line = lines[-1]
+
+    parts = last_line.split(',')
+    e2e_time = parts[2]
+
+    return int(e2e_time) / 60.0 if e2e_time else 1
+
+def stable_diffusion_throughput(file_path, encoding='ISO-8859-1'):
+    time_ms_value = None
+    last_timestamp = None
+    consumed_samples = None
+
+    with open(file_path, 'r', encoding=encoding) as file:
+        lines = file.readlines()
+
+    # Find the line containing ""samples_count": 0"
+    for line in lines:
+        if '"samples_count": 0' in line:
+            start_index = line.find('"time_ms": ') + len('"time_ms": ')
+            end_index = line.find(',', start_index)
+            time_ms_value = float(line[start_index:end_index])
+            break  # Exit loop after finding the first match
+
+    # Find the last line containing "in the background"
+    for line in reversed(lines):
+        if "in the background" in line:
+            start_index = line.find("timestamp=") + len("timestamp=")
+            end_index = line.find("-", start_index)
+            last_timestamp = float(line[start_index:end_index])
+
+            start_index = line.find("consumed_samples=") + len("consumed_samples=")
+            end_index = line.find(".", start_index)
+            consumed_samples = float(line[start_index:end_index])
+            break  # Exit loop after finding the last match
+
+    if time_ms_value is not None and last_timestamp is not None:
+        # Compute the difference in minutes
+        difference_ms = last_timestamp - time_ms_value
+        difference_sec = difference_ms / (1000)
+        throughput = consumed_samples / difference_sec
+        return throughput
+    else:
+        return 1
+
+
+def stable_diffusion_raw_training_time(file_path, encoding='ISO-8859-1'):
+    time_ms_value = None
+    last_timestamp = None
+
+    with open(file_path, 'r', encoding=encoding) as file:
+        lines = file.readlines()
+
+    # Find the line containing ""samples_count": 0"
+    for line in lines:
+        if '"samples_count": 0' in line:
+            start_index = line.find('"time_ms": ') + len('"time_ms": ')
+            end_index = line.find(',', start_index)
+            time_ms_value = float(line[start_index:end_index])
+            break  # Exit loop after finding the first match
+
+    # Find the last line containing "in the background"
+    for line in reversed(lines):
+        if "in the background" in line:
+            start_index = line.find("timestamp=") + len("timestamp=")
+            end_index = line.find("-", start_index)
+            last_timestamp = float(line[start_index:end_index])
+            break  # Exit loop after finding the last match
+
+    if time_ms_value is not None and last_timestamp is not None:
+        # Compute the difference in minutes
+        difference_ms = last_timestamp - time_ms_value
+        difference_minutes = difference_ms / (1000 * 60)
+        return difference_minutes
+    else:
+        return 1
+
 def extract_metrics(log_file, name):
     if name == "bert":
         with open(log_file, 'r') as file:
@@ -77,6 +158,10 @@ def extract_metrics(log_file, name):
         e2e_time = [llama2_70b_e2e_time(log_file)]      
         training_sequences_per_second = llama2_70b_throughput(log_file)
         raw_train_time = [llama2_70b_raw_training_time(log_file)]
+    elif name == "stable_diffusion":
+        e2e_time = [stable_diffusion_e2e_time(log_file)]      
+        training_sequences_per_second = [stable_diffusion_throughput(log_file)]
+        raw_train_time = [stable_diffusion_raw_training_time(log_file)]        
     else:
         e2e_time = [0]
         training_sequences_per_second = [0]
@@ -105,6 +190,10 @@ def process_folder(folder, name):
             e2e_times.extend(e2e_time)
             training_sequences_per_seconds.extend(training_sequences_per_second)
             raw_train_times.extend(raw_train_time)
+
+    print(e2e_times)
+    print(raw_train_times)
+    print(training_sequences_per_seconds)
 
     if not e2e_times or not training_sequences_per_seconds or not raw_train_times:
         return None
@@ -149,10 +238,15 @@ if __name__ == "__main__":
     #output_file = "../benchmarks/bert/implementations/pytorch/results/output.csv"
 
 
-    name = "llama2-70b"
-    root_folder = "../benchmarks/llama2_70b_lora/implementations/nemo/results"
-    output_file = "../benchmarks/llama2_70b_lora/implementations/nemo/results/output.csv"
+    # name = "llama2-70b"
+    # root_folder = "../benchmarks/llama2_70b_lora/implementations/nemo/results"
+    # output_file = "../benchmarks/llama2_70b_lora/implementations/nemo/results/output.csv"
+
+    name = "stable_diffusion"
+    root_folder = "../benchmarks/stable_diffusion/implementations/nemo/results"
+    output_file = "../benchmarks/stable_diffusion/implementations/nemo/results/output.csv"    
 
     data = process_folders(root_folder, name)
+
     save_to_csv(data, output_file)
 
