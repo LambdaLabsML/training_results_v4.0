@@ -61,7 +61,7 @@ sudo chmod 1777 /run/enroot
 ```
 # Build the container and push to local registry
 # Currently head node will crash during docker build, so better use a worker node to build the image and push to the head node registery
-export HEADNODE_HOSTNAME=ml-512-head-001
+export HEADNODE_HOSTNAME=calvin-training-head-003
 docker build --build-arg CACHEBUST=$(date +%s) -t $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-gpt3:latest .
 docker push $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-gpt3:latest
 
@@ -105,28 +105,21 @@ tar -xvf checkpoint_nemo_bf16.tar
 ## Run training
 
 ```
-# Single node
-export HEADNODE_HOSTNAME=ml-512-head-001 && \
-source ./config_1cc_1x8x128x2x4_mbs2.sh && \
-sbatch -N1 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
+# 8x nodes (will OOM)
+export HEADNODE_HOSTNAME=calvin-training-head-003 && \
+source ./config_1cc_8x8x32x8x4_mbs2.sh && \
+sbatch -N8 --gres=gpu:8 run_1cc_8x_test_4.sub
 
-# 2x nodes
-
-
-# 4x nodes
-export HEADNODE_HOSTNAME=ml-512-head-001 && \
-source ./config_1cc_4x8x128x2x4_mbs2.sh && \
-sbatch -N4 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
-
-
-# 8x nodes
-export HEADNODE_HOSTNAME=ml-512-head-001 && \
-source ./config_1cc_8x8x2x4x4_mbs2.sh && \
-sbatch -N8 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
+# 16x nodes (minimal num_gpus to get things to work)
+export HEADNODE_HOSTNAME=calvin-training-head-003 && \
+source ./config_1cc_16x8x128x8x4_mbs2.sh && \
+sbatch -N16 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 ```
 
 You should see training finished with log like this
 ```
+  0: ENDING TIMING RUN AT 2024-08-28 10:31:22 AM
+  0: RESULT,large language model,29046,20724,root,2024-08-28 04:45:58 AM
 ```
 
 # Troubleshoot

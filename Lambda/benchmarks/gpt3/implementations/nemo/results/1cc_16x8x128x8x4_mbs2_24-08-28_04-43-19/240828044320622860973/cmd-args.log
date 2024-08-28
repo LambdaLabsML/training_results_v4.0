@@ -1,0 +1,1 @@
+/workspace/llm/megatron_gpt_pretraining_custom.py exp_manager.create_tensorboard_logger=False exp_manager.explicit_log_dir="/results/240828044320622860973" optim@model.optim=distributed_fused_adam
