@@ -1,0 +1,3 @@
+[NeMo W 2024-08-28 13:00:12 nemo_logging:349] /workspace/Megatron-LM/megatron/core/datasets/gpt_dataset.py:95: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+      assert (
+    
