@@ -61,7 +61,7 @@ sudo chmod 1777 /run/enroot
 ```
 # Build the container and push to local registry
 # Currently head node will crash during docker build, so better use a worker node to build the image and push to the head node registery
-export HEADNODE_HOSTNAME=ml-512-head-001
+export HEADNODE_HOSTNAME=calvin-training-head-003
 docker build --build-arg CACHEBUST=$(date +%s) -t $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-llama2_70b_lora:latest .
 docker push $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-llama2_70b_lora:latest
 
@@ -113,6 +113,12 @@ sbatch -N2 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 export HEADNODE_HOSTNAME=$(hostname) && \
 source configs/config_1cc_4x8x4xtp4pp1cp2.sh && \
 sbatch -N4 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
+
+
+# 8x nodes
+export HEADNODE_HOSTNAME=$(hostname) && \
+source configs/config_1cc_8x8x4xtp4pp1cp2.sh && \
+sbatch -N8 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 ```
 
 You should see training finished with log like this
@@ -157,3 +163,7 @@ Also in experiment configs e.g. `config_1cc_1x8x4xtp4pp1cp1.sh`:
 ```
 export TP_COMM_OVERLAP=False
 ```
+
+3. __cuDNN Error: Tensor 'sdpa_fp8::Amax_O' strides not set.__
+This happens when context parallesim (CP) set to 1. It is caused by `cudnn-frontend` (a submodule of transformere engine) has breaking changes.
+Solution: in Dockerfile, pin `cudnn-frontend` to `v1.3.0` 

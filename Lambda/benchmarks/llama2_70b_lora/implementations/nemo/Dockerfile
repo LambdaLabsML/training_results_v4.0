@@ -53,6 +53,9 @@ RUN if [ "${TE_REVISION}" != SKIP ]; then \
       git clone https://github.com/NVIDIA/TransformerEngine.git && \
       cd TransformerEngine && \
       git submodule init && git submodule update && \
+      cd 3rdparty/cudnn-frontend && \
+      git checkout v1.3.0 && \
+      cd ../.. && \
       echo TE_REVISION=${TE_REVISION} && \
       git checkout ${CUSTOM_TE_REVISION} && \
       echo TE_COMMIT_HASH=$(git rev-parse HEAD) && \
@@ -68,3 +71,5 @@ RUN echo "Cache busting argument: $CACHEBUST"
 ADD . /workspace/ft-llm
 RUN pip install -r requirements.txt
 RUN pip install transformers==4.40.2
+RUN pip install huggingface-hub==0.22.0
+RUN pip install pytorch-lightning==2.2.2 
