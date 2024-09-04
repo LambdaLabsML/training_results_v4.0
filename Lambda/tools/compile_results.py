@@ -6,6 +6,48 @@ import json
 from statistics import mean, stdev
 
 
+def bert_raw_training_time(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()    
+    time_ms_samples_count_0 = None
+    time_ms_status_success = None
+
+    for line in lines:
+        if "time_ms" in line:
+            # Extract the JSON part of the line
+            json_part = line.split(':::MLLOG ')[-1]
+            line_data = json.loads(json_part)
+            if "epoch_num" in line_data["metadata"] and line_data["metadata"]["epoch_num"] == 0:
+                print(line_data["metadata"])
+                time_ms_samples_count_0 = line_data["time_ms"]
+            if "\"status\"" in json_part and line_data["metadata"]["status"] == "success":
+                time_ms_status_success = line_data["time_ms"]
+
+            if time_ms_samples_count_0 is not None and time_ms_status_success is not None:
+                break
+
+    if time_ms_samples_count_0 is None or time_ms_status_success is None:
+        return -1
+
+    # Convert milliseconds to minutes and compute the difference
+    time_difference = (time_ms_status_success - time_ms_samples_count_0) / 60000.0
+
+    return time_difference
+
+
+def bert_e2e_time(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+    e2e_time = re.findall(r"'e2e_time': (\d+\.\d+)", content)
+    return e2e_time
+
+
+def bert_throughput(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()    
+    training_sequences_per_second = re.findall(r"'training_sequences_per_second': (\d+\.\d+)", content)
+    return training_sequences_per_second
+
 def llama2_70b_raw_training_time(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
@@ -149,11 +191,15 @@ def stable_diffusion_raw_training_time(file_path, encoding='ISO-8859-1'):
 
 def extract_metrics(log_file, name):
     if name == "bert":
-        with open(log_file, 'r') as file:
-             content = file.read()
-        e2e_time = re.findall(r"'e2e_time': (\d+\.\d+)", content)
-        training_sequences_per_second = re.findall(r"'training_sequences_per_second': (\d+\.\d+)", content)
-        raw_train_time = re.findall(r"'raw_train_time': (\d+\.\d+)", content)
+        # with open(log_file, 'r') as file:
+        #      content = file.read()
+        # e2e_time = re.findall(r"'e2e_time': (\d+\.\d+)", content)
+        # training_sequences_per_second = re.findall(r"'training_sequences_per_second': (\d+\.\d+)", content)
+        # raw_train_time = re.findall(r"'raw_train_time': (\d+\.\d+)", content
+        # )
+        e2e_time = bert_e2e_time(log_file)   
+        training_sequences_per_second = bert_throughput(log_file)
+        raw_train_time = [bert_raw_training_time(log_file)]
     elif name == "llama2-70b":
         e2e_time = [llama2_70b_e2e_time(log_file)]      
         training_sequences_per_second = llama2_70b_throughput(log_file)
@@ -233,18 +279,18 @@ def save_to_csv(data, output_file):
     df.to_csv(output_file, index=False)
 
 if __name__ == "__main__":
-    #name = "bert"
-    #root_folder = "../benchmarks/bert/implementations/pytorch/results"
-    #output_file = "../benchmarks/bert/implementations/pytorch/results/output.csv"
+    name = "bert"
+    root_folder = "../benchmarks/bert/implementations/pytorch/results"
+    output_file = "../benchmarks/bert/implementations/pytorch/results/output.csv"
 
 
     # name = "llama2-70b"
     # root_folder = "../benchmarks/llama2_70b_lora/implementations/nemo/results"
     # output_file = "../benchmarks/llama2_70b_lora/implementations/nemo/results/output.csv"
 
-    name = "stable_diffusion"
-    root_folder = "../benchmarks/stable_diffusion/implementations/nemo/results"
-    output_file = "../benchmarks/stable_diffusion/implementations/nemo/results/output.csv"    
+    # name = "stable_diffusion"
+    # root_folder = "../benchmarks/stable_diffusion/implementations/nemo/results"
+    # output_file = "../benchmarks/stable_diffusion/implementations/nemo/results/output.csv"    
 
     data = process_folders(root_folder, name)
 

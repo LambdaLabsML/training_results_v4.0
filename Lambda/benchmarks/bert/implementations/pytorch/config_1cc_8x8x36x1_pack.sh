@@ -1,14 +1,14 @@
 ## DL params                                                                                                                                                                                                          
-export BATCHSIZE=48
-export PACKING_FACTOR=2
+export BATCHSIZE=36
+export PACKING_FACTOR=1
 export GRADIENT_STEPS=1
-export LR=0.00096
-export MAX_SAMPLES_TERMINATION=450000000
-export MAX_STEPS=3680
-export OPT_LAMB_BETA_1=0.60466
-export OPT_LAMB_BETA_2=0.85437
-export START_WARMUP_STEP=0
-export WARMUP_PROPORTION=0.0
+export LR=0.0029
+export MAX_SAMPLES_TERMINATION=4500000
+export MAX_STEPS=740
+export OPT_LAMB_BETA_1=0.6
+export OPT_LAMB_BETA_2=0.7
+export START_WARMUP_STEP=-200000
+export WARMUP_STEPS=200330
 export WEIGHT_DECAY_RATE=0.1
 export INIT_LOSS_SCALE=1024.0
 
@@ -19,7 +19,7 @@ export EVAL_ITER_START_SAMPLES=150000
 export EVAL_ITER_SAMPLES=150000
 
 ## System run parms                                                                                                                                                                                                   
-export DGXNNODES=4
+export DGXNNODES=8
 export DGXSYSTEM="1CC"
 export WALLTIME_MINUTES=4
 if [[ "${MLPERF_POWER_TRAIN_AFTER_RUN_STOP:-0}" == "1" ]]; then
@@ -42,5 +42,5 @@ export DATADIR_PHASE2=${DATADIR_PHASE2_PACKED}
 
 ## log dir
 timestamp=$(date +'%y-%m-%d_%H-%M-%S')
-export LOGDIR=./results/1cc_4x8x48x1_${timestamp}
+export LOGDIR=./results/1cc_8x8x36x1_${timestamp}
 mkdir -p ${LOGDIR}

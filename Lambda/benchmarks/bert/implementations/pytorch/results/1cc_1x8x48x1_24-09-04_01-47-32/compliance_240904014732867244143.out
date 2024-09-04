@@ -1,0 +1,25 @@
+INFO - Running compliance on file: /results/240904014732867244143_1.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240904014732867244143_2.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240904014732867244143_3.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240904014732867244143_4.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240904014732867244143_5.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+INFO - SUCCESS
