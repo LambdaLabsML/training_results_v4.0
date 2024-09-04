@@ -9,7 +9,7 @@ export MINIBS=4
 
 export TP=4
 export PP=1
-export CP=2
+export CP=1
 export SP=1
 export UCX_TLS=self,shm,rc,ud,tcp
 
@@ -32,5 +32,5 @@ export SHARP=True
 export NCCL_TEST=0
 
 timestamp=$(date +'%y-%m-%d_%H-%M-%S')
-export LOGDIR=./results/1cc_2x8x4xtp4pp1cp2_${timestamp}
+export LOGDIR=./results/1cc_2x8x4xtp4pp1cp1_${timestamp}
 mkdir -p ${LOGDIR}

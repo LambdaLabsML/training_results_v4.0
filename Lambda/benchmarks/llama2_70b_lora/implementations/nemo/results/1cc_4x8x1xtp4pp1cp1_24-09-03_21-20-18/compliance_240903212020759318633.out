@@ -1,0 +1,15 @@
+INFO - Running compliance on file: /results/240903212020759318633_1.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240903212020759318633_2.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240903212020759318633_3.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS

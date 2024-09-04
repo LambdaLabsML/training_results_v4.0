@@ -19,7 +19,7 @@ WORKDIR /workspace/ft-llm
 RUN git config --global user.name "a" && \
     git config --global user.email "a"
 
-## NeMo
+# NeMo
 ARG NEMO_REVISION=v2.0.0.rc0.beta
 
 RUN git clone https://github.com/NVIDIA/NeMo.git && \
@@ -28,6 +28,15 @@ RUN git clone https://github.com/NVIDIA/NeMo.git && \
     git checkout ${NEMO_REVISION} && \
     echo NEMO_COMMIT_HASH=$(git rev-parse HEAD) && \
     pip install --no-build-isolation -e ".[nlp]"
+
+
+# ARG NEMO_REVISION=chuan
+
+# RUN git clone https://github.com/chuanli11/NeMo.git && \
+#     cd NeMo && \
+#     echo NEMO_REVISION=${NEMO_REVISION} && \
+#     git checkout ${NEMO_REVISION} && \
+#     pip install --no-build-isolation -e ".[nlp]"
 
 ## Megatron-core
 ARG MEGATRON_REVISION=core_v0.7.0.beta

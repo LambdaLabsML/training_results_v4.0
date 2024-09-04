@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gpus-per-node=8
 #SBATCH --exclusive
-#SBATCH --nodelist=ml-512-node-063    # Specific nodes
+#SBATCH --nodelist=calvin-training-node-001,calvin-training-node-002,calvin-training-node-003,calvin-training-node-004    # Specific nodes
 
 echo ${DATAPATH}
 
@@ -33,10 +33,10 @@ CONT="local/mlperf-nvidia-llama2_70b_lora:latest"
 
 echo $HEADNODE_HOSTNAME
 
-# srun -l --mpi="pmix" \
-#      --container-image="${HEADNODE_HOSTNAME}:5000#${CONT}" \
-#      --container-mounts=${_cont_mounts} \
-#      /bin/bash -c "ulimit -n 65536 && nvidia-smi"
+srun -l --mpi="pmix" \
+     --container-image="${HEADNODE_HOSTNAME}:5000#${CONT}" \
+     --container-mounts=${_cont_mounts} \
+     /bin/bash -c "ulimit -n 65536 && nvidia-smi"
 
 # Data
 srun -l --mpi="pmix" \
@@ -53,4 +53,5 @@ srun -l --mpi="pmix" \
 sudo chmod -R 777 $DATAPATH
 sudo chmod -R 777 $MODELPATH
 
-cd $MODELPATH && tar -xvf llama2-70b.nemo
+# Extract model weights
+cd $MODELPATH && tar -xvf llama2-70
