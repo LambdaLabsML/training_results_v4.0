@@ -61,7 +61,7 @@ sudo chmod 1777 /run/enroot
 ```
 # Build the container and push to local registry
 # Currently head node will crash during docker build, so better use a worker node to build the image and push to the head node registery
-export HEADNODE_HOSTNAME=ml-512-head-001
+export HEADNODE_HOSTNAME=calvin-training-head-003
 docker build --build-arg CACHEBUST=$(date +%s) -t $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-stable_diffusion-pyt:latest .
 docker push $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-stable_diffusion-pyt:latest
 
@@ -105,20 +105,26 @@ stable_diffusion/
 
 ```
 # Single node
-export HEADNODE_HOSTNAME=ml-512-head-001 && \
+export HEADNODE_HOSTNAME=$(hostname) && \
 source ./config_1cc_01x08x64.sh && \
 sbatch -N1 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 
 # 2x nodes
-export HEADNODE_HOSTNAME=ml-512-head-001 && \
+export HEADNODE_HOSTNAME=$(hostname) && \
 source ./config_1cc_02x08x32.sh && \
 sbatch -N2 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 
 
 # 4x nodes
-export HEADNODE_HOSTNAME=ml-512-head-001 && \
+export HEADNODE_HOSTNAME=$(hostname) && \
 source ./config_1cc_04x08x32.sh && \
 sbatch -N4 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
+
+
+# 8x nodes
+export HEADNODE_HOSTNAME=$(hostname) && \
+source ./config_1cc_08x08x16.sh && \
+sbatch -N8 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 ```
 
 You should see training finished with log like this
@@ -148,3 +154,7 @@ Downgrade huggingface-hub to 0.23.5 in dockerfile. See this [recent breaking cha
 ```
 pytorch-lightning==2.2.2 
 ```
+
+4. __Training doesn't scale well beyond 4 nodes__
+Shared FS might becomes the bottleneck due to dataset are stored as large .tar files (which forced sequential read). 
+Use local storage instead.

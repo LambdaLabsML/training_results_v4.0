@@ -80,7 +80,8 @@ export MLPERF_STATUS=onprem
 export MLPERF_DIVISION=closed
 
 export CONT="$(hostname):5000#local/mlperf-nvidia-stable_diffusion-pyt:latest"
-export DATADIR="/home/ubuntu/ml-1cc/data/mlperf/stable_diffusion"
+# export DATADIR="/home/ubuntu/ml-1cc/data/mlperf/stable_diffusion"
+export DATADIR="/home/ubuntu/data/mlperf/stable_diffusion"
 export CHECKPOINTS="/home/ubuntu/ml-1cc/data/mlperf/stable_diffusion"
 
 export NEXP=3

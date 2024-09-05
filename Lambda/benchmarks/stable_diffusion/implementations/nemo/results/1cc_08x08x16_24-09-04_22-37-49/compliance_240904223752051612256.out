@@ -1,0 +1,15 @@
+INFO - Running compliance on file: /results/240904223752051612256_1.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240904223752051612256_2.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240904223752051612256_3.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+INFO - SUCCESS

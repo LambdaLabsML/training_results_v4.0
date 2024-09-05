@@ -43,14 +43,14 @@ def plot_metric(df, name, s_std, metric_mean, metric_std, metric_name, output_pa
 
 
 if __name__ == "__main__":
-    output_path = "../benchmarks/bert/implementations/pytorch/results"
-    name = "bert"
+    # output_path = "../benchmarks/bert/implementations/pytorch/results"
+    # name = "bert"
 
     # output_path = "../benchmarks/llama2_70b_lora/implementations/nemo/results"
     # name = "llama2_70b"
 
-    # output_path = "../benchmarks/stable_diffusion/implementations/nemo/results"
-    # name = "stable_diffusion"
+    output_path = "../benchmarks/stable_diffusion/implementations/nemo/results"
+    name = "stable_diffusion"
 
     csv_file = output_path + "/output.csv"
     s_std = 2

@@ -175,12 +175,22 @@ def stable_diffusion_raw_training_time(file_path, encoding='ISO-8859-1'):
 
     # Find the last line containing "in the background"
     for line in reversed(lines):
-        if "in the background" in line:
-            start_index = line.find("timestamp=") + len("timestamp=")
-            end_index = line.find("-", start_index)
-            last_timestamp = float(line[start_index:end_index])
-            break  # Exit loop after finding the last match
-
+        if "success" in line and "time_ms" in line:
+            # Extract the JSON part of the line
+            json_part = line.split(':::MLLOG ')[-1]
+            line_data = json.loads(json_part)
+            if line_data["metadata"]["status"] == "success":
+                step_num_success = line_data["metadata"]["step_num"]
+                break
+    
+    for line in lines:
+        if "timestamp" in line:
+            if f"global step {step_num_success}:" in line:
+                print(line)
+                match = re.search(r"'timestamp' reached ([\d.]+)", line)
+                last_timestamp = float(match.group(1))
+                break
+    
     if time_ms_value is not None and last_timestamp is not None:
         # Compute the difference in minutes
         difference_ms = last_timestamp - time_ms_value
@@ -279,18 +289,17 @@ def save_to_csv(data, output_file):
     df.to_csv(output_file, index=False)
 
 if __name__ == "__main__":
-    name = "bert"
-    root_folder = "../benchmarks/bert/implementations/pytorch/results"
-    output_file = "../benchmarks/bert/implementations/pytorch/results/output.csv"
-
+    # name = "bert"
+    # root_folder = "../benchmarks/bert/implementations/pytorch/results"
+    # output_file = "../benchmarks/bert/implementations/pytorch/results/output.csv"
 
     # name = "llama2-70b"
     # root_folder = "../benchmarks/llama2_70b_lora/implementations/nemo/results"
     # output_file = "../benchmarks/llama2_70b_lora/implementations/nemo/results/output.csv"
 
-    # name = "stable_diffusion"
-    # root_folder = "../benchmarks/stable_diffusion/implementations/nemo/results"
-    # output_file = "../benchmarks/stable_diffusion/implementations/nemo/results/output.csv"    
+    name = "stable_diffusion"
+    root_folder = "../benchmarks/stable_diffusion/implementations/nemo/results"
+    output_file = "../benchmarks/stable_diffusion/implementations/nemo/results/output.csv"    
 
     data = process_folders(root_folder, name)
 
