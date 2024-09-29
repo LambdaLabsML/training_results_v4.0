@@ -1,0 +1,56 @@
+INFO - Running compliance on file: /results/240928184157637375208_1.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928184157637375208_2.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+WARNING -  Required EXACTLY_ONE occurrence of 'run_stop' but found 0
+------------------------------
+Failed checks for eval_accuracy : (v['value'] <= 0.925) and v['value'] > 0.0
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928184157637375208_3.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928184157637375208_4.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928184157637375208_5.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928184157637375208_6.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928184157637375208_7.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+WARNING -  Required EXACTLY_ONE occurrence of 'run_stop' but found 0
+------------------------------
+Failed checks for eval_accuracy : (v['value'] <= 0.925) and v['value'] > 0.0
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928184157637375208_8.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928184157637375208_9.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928184157637375208_10.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS

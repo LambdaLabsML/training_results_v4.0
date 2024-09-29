@@ -54,4 +54,4 @@ sudo chmod -R 777 $DATAPATH
 sudo chmod -R 777 $MODELPATH
 
 # Extract model weights
-cd $MODELPATH && tar -xvf llama2-70
+cd $MODELPATH && tar -xvf llama2-70b.nemo

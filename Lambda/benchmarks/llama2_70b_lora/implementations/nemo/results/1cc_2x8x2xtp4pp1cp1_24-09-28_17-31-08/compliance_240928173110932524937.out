@@ -1,0 +1,50 @@
+INFO - Running compliance on file: /results/240928173110932524937_1.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928173110932524937_2.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928173110932524937_3.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928173110932524937_4.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928173110932524937_5.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928173110932524937_6.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928173110932524937_7.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928173110932524937_8.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928173110932524937_9.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928173110932524937_10.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_llama2_70b_lora.yaml
+INFO - SUCCESS

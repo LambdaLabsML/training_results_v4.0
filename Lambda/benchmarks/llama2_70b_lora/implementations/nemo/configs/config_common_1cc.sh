@@ -48,6 +48,4 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export CONT="$(hostname):5000#local/mlperf-nvidia-llama2_70b_lora:latest"
 export DATADIR="/home/ubuntu/ml-1cc/data/mlperf/llama2_70b_lora/data"
 export MODEL="/home/ubuntu/ml-1cc/data/mlperf/llama2_70b_lora/ckpt"
-# export DATADIR="/home/ubuntu/data/mlperf/llama2_70b_lora/data"
-# export MODEL="/home/ubuntu/data/mlperf/llama2_70b_lora/ckpt"
-export NEXP=3
+export NEXP=10
