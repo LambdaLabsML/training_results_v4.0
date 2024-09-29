@@ -36,7 +36,7 @@ fi
 export WALLTIME=$(( ${NEXP:-1} * ${WALLTIME_MINUTES} + 5 ))
 
 ## System config params
-source $(dirname ${BASH_SOURCE[0]})/config_DGXH100_common.sh
+source $(dirname ${BASH_SOURCE[0]})/config_1cc_common.sh
 
 export CONTAINER_PRELOAD_LUSTRE=0
 export USE_DDP=1
