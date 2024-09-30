@@ -14,7 +14,7 @@
 # limitations under the License.
 #SBATCH --exclusive
 #SBATCH --mem=0
-#SBATCH --nodelist=calvin-training-node-001,calvin-training-node-002,calvin-training-node-003,calvin-training-node-004,calvin-training-node-005,calvin-training-node-006,calvin-training-node-007,calvin-training-node-009
+#SBATCH --nodelist=calvin-training-node-001,calvin-training-node-002,calvin-training-node-003,calvin-training-node-004,calvin-training-node-005,calvin-training-node-006,calvin-training-node-007,calvin-training-node-009,calvin-training-node-011,calvin-training-node-013,calvin-training-node-015,calvin-training-node-016,calvin-training-node-017,calvin-training-node-018,calvin-training-node-019,calvin-training-node-020
 
 set -euxo pipefail
 
@@ -252,6 +252,8 @@ mllogger.event(key=mllog.constants.CACHE_CLEAR, value=True)"
         # Cleanup the generated images. They were used for evaluation but are no longer needed.
         # This should not be run as srun job, because time limit might be exceeded.
         rm -rf ${NEMOLOGS}/${EXP_NAME}/inference
+        echo "in run_1cc.sub, rm -rf ${NEMOLOGS}/${EXP_NAME}/checkpoints"
+        rm -rf ${NEMOLOGS}/${EXP_NAME}/checkpoints
 
     # compliance checker
     if [ "${CHECK_COMPLIANCE}" -eq 1 ]; then
