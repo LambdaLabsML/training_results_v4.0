@@ -129,7 +129,7 @@ sbatch -N8 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 
 You should see training finished with log like this
 ```
- 
+0: :::MLLOG {"namespace": "", "time_ms": 1725490438668, "event_type": "INTERVAL_END", "key": "run_stop", "value": null, "metadata": {"file": "/usr/local/lib/python3.10/dist-packages/hydra/core/utils.py", "lineno": 186, "status": "success", "step_num": 2500}}
 ```
 
 
