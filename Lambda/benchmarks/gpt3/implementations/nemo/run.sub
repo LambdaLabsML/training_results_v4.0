@@ -16,6 +16,7 @@
 
 #SBATCH --exclusive
 #SBATCH --mem=0
+#SBATCH --nodelist=ml-512-node-057,ml-512-node-058,ml-512-node-059,ml-512-node-060    # Specific nodes
 
 set -eux
 

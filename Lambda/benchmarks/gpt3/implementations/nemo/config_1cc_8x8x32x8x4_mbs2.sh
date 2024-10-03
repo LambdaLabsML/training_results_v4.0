@@ -1,10 +1,10 @@
 # dryrun "med" config
 
 ## DL params
-export MINIBS=128
-export TENSOR_MODEL_PARALLEL=2   #  training.model.tensor_model_parallel_size
+export MINIBS=32
+export TENSOR_MODEL_PARALLEL=8   #  training.model.tensor_model_parallel_size
 export PIPELINE_MODEL_PARALLEL=4 #  training.model.pipeline_model_parallel_size
-export DGXNNODES=4
+export DGXNNODES=8
 #=======================================================================
 ## System run parms
 export DGXSYSTEM=$(basename $(readlink -f ${BASH_SOURCE[0]}) | sed 's/^config_//' | sed 's/\.sh$//' )
@@ -38,5 +38,5 @@ fi
 export INTERLEAVED_PIPELINE=4
 
 timestamp=$(date +'%y-%m-%d_%H-%M-%S')
-export LOGDIR=./results/1cc_4x8x128x2x4_mbs2_${timestamp}
+export LOGDIR=./results/1cc_8x8x32x8x4_mbs2_${timestamp}
 mkdir -p ${LOGDIR}

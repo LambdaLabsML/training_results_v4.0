@@ -1,7 +1,7 @@
 # dryrun "med" config
 
 ## DL params
-export MINIBS="${MINIBS:=2}"
+export MINIBS=2
 export TENSOR_MODEL_PARALLEL=2   #  training.model.tensor_model_parallel_size
 export PIPELINE_MODEL_PARALLEL=4 #  training.model.pipeline_model_parallel_size
 export DGXNNODES=8
@@ -38,5 +38,5 @@ fi
 export INTERLEAVED_PIPELINE=4
 
 timestamp=$(date +'%y-%m-%d_%H-%M-%S')
-export LOGDIR=./results/1cc_4x8x128x4x1_mbs2_${timestamp}
+export LOGDIR=./results/1cc_8x8x128x4x1_mbs2_${timestamp}
 mkdir -p ${LOGDIR}

@@ -40,4 +40,6 @@ export LIMIT_TRAIN_BATCHES=4000 # a 64xnode cluster uses 500, scaling accordingl
 export LR=2.5e-6
 export MIN_LR=2.5e-7
 
-timestamp=$(date +'%y-%m
+timestamp=$(date +'%y-%m-%d_%H-%M-%S')
+export LOGDIR=./results/1cc_8x8x64x8x8_mbs2_${timestamp}
+mkdir -p ${LOGDIR}

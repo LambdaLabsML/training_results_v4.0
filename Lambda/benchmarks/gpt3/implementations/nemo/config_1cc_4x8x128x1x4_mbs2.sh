@@ -1,7 +1,7 @@
 # dryrun "med" config
 
 ## DL params
-export MINIBS="${MINIBS:=128}"
+export MINIBS=128
 export TENSOR_MODEL_PARALLEL=1   #  training.model.tensor_model_parallel_size
 export PIPELINE_MODEL_PARALLEL=4 #  training.model.pipeline_model_parallel_size
 export DGXNNODES=4
