@@ -1,0 +1,54 @@
+INFO - Running compliance on file: /results/241002014756698278476_1.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_gpt3.yaml
+WARNING -  CHECK for 'opt_base_learning_rate' failed in line 152:
+:::MLLOG {"namespace": "", "time_ms": 1727833998928, "event_type": "POINT_IN_TIME", "key": "opt_base_learning_rate", "value": 5e-06, "metadata": {"file": "/workspace/llm/custom_callbacks.py", "lineno": 522}}
+failed test:  v['value'] == 2e-5 or v['value'] == 3e-5 
+current context[s]={
+  "global_batch_size": 512
+}
+current line[v]={
+  "metadata": {
+    "file": "/workspace/llm/custom_callbacks.py",
+    "lineno": 522
+  },
+  "value": 5e-06
+}
+ERROR - FAILED
+INFO - Running compliance on file: /results/241002014756698278476_2.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_gpt3.yaml
+WARNING -  CHECK for 'opt_base_learning_rate' failed in line 152:
+:::MLLOG {"namespace": "", "time_ms": 1727854858747, "event_type": "POINT_IN_TIME", "key": "opt_base_learning_rate", "value": 5e-06, "metadata": {"file": "/workspace/llm/custom_callbacks.py", "lineno": 522}}
+failed test:  v['value'] == 2e-5 or v['value'] == 3e-5 
+current context[s]={
+  "global_batch_size": 512
+}
+current line[v]={
+  "metadata": {
+    "file": "/workspace/llm/custom_callbacks.py",
+    "lineno": 522
+  },
+  "value": 5e-06
+}
+ERROR - FAILED
+INFO - Running compliance on file: /results/241002014756698278476_3.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_gpt3.yaml
+WARNING -  CHECK for 'opt_base_learning_rate' failed in line 152:
+:::MLLOG {"namespace": "", "time_ms": 1727875707131, "event_type": "POINT_IN_TIME", "key": "opt_base_learning_rate", "value": 5e-06, "metadata": {"file": "/workspace/llm/custom_callbacks.py", "lineno": 522}}
+failed test:  v['value'] == 2e-5 or v['value'] == 3e-5 
+current context[s]={
+  "global_batch_size": 512
+}
+current line[v]={
+  "metadata": {
+    "file": "/workspace/llm/custom_callbacks.py",
+    "lineno": 522
+  },
+  "value": 5e-06
+}
+ERROR - FAILED
