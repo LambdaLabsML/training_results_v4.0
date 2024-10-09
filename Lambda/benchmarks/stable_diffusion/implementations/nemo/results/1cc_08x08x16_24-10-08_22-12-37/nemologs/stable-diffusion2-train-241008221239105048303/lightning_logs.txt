@@ -1,0 +1,31 @@
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 64 processes
+----------------------------------------------------------------------------------------------------
+
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3,4,5,6,7]
+
+  | Name  | Type            | Params
+------------------------------------------
+0 | model | LatentDiffusion | 865 M 
+------------------------------------------
+865 M     Trainable params
+0         Non-trainable params
+865 M     Total params
+3,463.643 Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+CUDAGraphCallback: disable autocast cache.
+CUDAGraphCallback: set optimizer.zero_grad as nop during graph capturing.
+Epoch 0, global step 500: 'timestamp' reached 1728443989101.00000 (best 1728443989101.00000), saving model to '/tmp/nemologs/stable-diffusion2-train-241008221239105048303/checkpoints/stable-diffusion2-train-241008221239105048303--timestamp=1728443989101.0-step=500-consumed_samples=512000.0.ckpt' as top 1
+Epoch 1, global step 1000: 'timestamp' reached 1728444081427.00000 (best 1728443989101.00000), saving model to '/tmp/nemologs/stable-diffusion2-train-241008221239105048303/checkpoints/stable-diffusion2-train-241008221239105048303--timestamp=1728444081427.0-step=1000-consumed_samples=1024000.0.ckpt' as top 2
+Epoch 1, global step 1500: 'timestamp' reached 1728444164750.00000 (best 1728443989101.00000), saving model to '/tmp/nemologs/stable-diffusion2-train-241008221239105048303/checkpoints/stable-diffusion2-train-241008221239105048303--timestamp=1728444164750.0-step=1500-consumed_samples=1536000.0.ckpt' as top 3
+Epoch 2, global step 2000: 'timestamp' reached 1728444253577.00000 (best 1728443989101.00000), saving model to '/tmp/nemologs/stable-diffusion2-train-241008221239105048303/checkpoints/stable-diffusion2-train-241008221239105048303--timestamp=1728444253577.0-step=2000-consumed_samples=2048000.0.ckpt' as top 4
+Epoch 3, global step 2500: 'timestamp' reached 1728444341545.00000 (best 1728443989101.00000), saving model to '/tmp/nemologs/stable-diffusion2-train-241008221239105048303/checkpoints/stable-diffusion2-train-241008221239105048303--timestamp=1728444341545.0-step=2500-consumed_samples=2560000.0.ckpt' as top 5
+Epoch 3, global step 3000: 'timestamp' reached 1728444423934.00000 (best 1728443989101.00000), saving model to '/tmp/nemologs/stable-diffusion2-train-241008221239105048303/checkpoints/stable-diffusion2-train-241008221239105048303--timestamp=1728444423934.0-step=3000-consumed_samples=3072000.0.ckpt' as top 6
+Epoch 4, global step 3500: 'timestamp' reached 1728444510066.00000 (best 1728443989101.00000), saving model to '/tmp/nemologs/stable-diffusion2-train-241008221239105048303/checkpoints/stable-diffusion2-train-241008221239105048303--timestamp=1728444510066.0-step=3500-consumed_samples=3584000.0.ckpt' as top 7
+Epoch 4, global step 4000: 'timestamp' reached 1728444592275.00000 (best 1728443989101.00000), saving model to '/tmp/nemologs/stable-diffusion2-train-241008221239105048303/checkpoints/stable-diffusion2-train-241008221239105048303--timestamp=1728444592275.0-step=4000-consumed_samples=4096000.0.ckpt' as top 8
+`Trainer.fit` stopped: `max_steps=4000` reached.

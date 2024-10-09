@@ -61,7 +61,7 @@ sudo chmod 1777 /run/enroot
 ```
 # Build the container and push to local registry
 # Currently head node will crash during docker build, so better use a worker node to build the image and push to the head node registery
-export HEADNODE_HOSTNAME=calvin-training-head-003
+export HEADNODE_HOSTNAME=ml-64-head-001
 docker build --build-arg CACHEBUST=$(date +%s) -t $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-stable_diffusion-pyt:latest .
 docker push $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-stable_diffusion-pyt:latest
 
@@ -72,7 +72,7 @@ curl http://$HEADNODE_HOSTNAME:5000/v2/_catalog
 ## Prepare dataset
 
 ```
-export HEADNODE_HOSTNAME=ml-512-head-001
+export HEADNODE_HOSTNAME=ml-64-head-001
 export DATAPATH=/home/ubuntu/ml-1cc/data/mlperf/stable_diffusion
 sudo mkdir -p $DATAPATH
 sudo chmod -R 777 $DATAPATH

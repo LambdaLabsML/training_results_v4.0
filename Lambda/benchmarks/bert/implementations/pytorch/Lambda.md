@@ -60,7 +60,8 @@ sudo chmod 1777 /run/enroot
 
 ```
 # Build the container and push to local registry
-export HEADNODE_HOSTNAME=$(hostname)
+# From any worker node (faster to build)
+export HEADNODE_HOSTNAME=ml-64-head-001
 docker build --build-arg CACHEBUST=$(date +%s) -t $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-bert:latest .
 docker push $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-bert:latest
 

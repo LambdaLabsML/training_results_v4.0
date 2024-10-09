@@ -293,13 +293,13 @@ if __name__ == "__main__":
     # root_folder = "../benchmarks/bert/implementations/pytorch/results"
     # output_file = "../benchmarks/bert/implementations/pytorch/results/output.csv"
 
-    # name = "llama2-70b"
-    # root_folder = "../benchmarks/llama2_70b_lora/implementations/nemo/results"
-    # output_file = "../benchmarks/llama2_70b_lora/implementations/nemo/results/output.csv"
+    name = "llama2-70b"
+    root_folder = "../benchmarks/llama2_70b_lora/implementations/nemo/results"
+    output_file = "../benchmarks/llama2_70b_lora/implementations/nemo/results/output.csv"
 
-    name = "stable_diffusion"
-    root_folder = "../benchmarks/stable_diffusion/implementations/nemo/results"
-    output_file = "../benchmarks/stable_diffusion/implementations/nemo/results/output.csv"    
+    # name = "stable_diffusion"
+    # root_folder = "../benchmarks/stable_diffusion/implementations/nemo/results"
+    # output_file = "../benchmarks/stable_diffusion/implementations/nemo/results/output.csv"    
 
     data = process_folders(root_folder, name)
 

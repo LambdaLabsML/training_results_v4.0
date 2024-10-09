@@ -92,4 +92,4 @@ export CONT="$(hostname):5000#local/mlperf-nvidia-gpt3:latest"
 export SPM="/home/ubuntu/ml-1cc/data/mlperf/gpt3/c4/spm/c4_en_301_5Mexp2_spm.model"
 export LOAD_CHECKPOINTS_PATH="/home/ubuntu/ml-1cc/data/mlperf/gpt3/checkpoint_nemo_bf16/ckpt4000-consumed_samples=0"
 export PREPROC_DATA="/home/ubuntu/ml-1cc/data/mlperf/gpt3/c4/preprocessed_c4_spm"
-export NEXP=1
+export NEXP=3

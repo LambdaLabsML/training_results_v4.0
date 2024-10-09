@@ -61,7 +61,7 @@ sudo chmod 1777 /run/enroot
 ```
 # Build the container and push to local registry
 # Currently head node will crash during docker build, so better use a worker node to build the image and push to the head node registery
-export HEADNODE_HOSTNAME=calvin-training-head-003
+export HEADNODE_HOSTNAME=ml-64-head-001
 docker build --build-arg CACHEBUST=$(date +%s) -t $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-llama2_70b_lora:latest .
 docker push $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-llama2_70b_lora:latest
 
@@ -102,6 +102,11 @@ llama2_70b_lora/
 # Single node
 export HEADNODE_HOSTNAME=$(hostname) && \
 source configs/config_1cc_1x8x4xtp4pp1cp1.sh && \
+sbatch -N1 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
+
+
+export HEADNODE_HOSTNAME=$(hostname) && \
+source configs/config_1cc_1x8x4xtp4pp1cp1_1008.sh && \
 sbatch -N1 --ntasks-per-node=8 --gres=gpu:8 run_1cc.sub
 
 # 2x nodes

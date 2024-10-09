@@ -16,7 +16,7 @@
 
 #SBATCH --exclusive
 #SBATCH --mem=0
-#SBATCH --nodelist=calvin-training-node-011,calvin-training-node-013,calvin-training-node-014,calvin-training-node-015,calvin-training-node-016,calvin-training-node-017,calvin-training-node-018,calvin-training-node-019
+#SBATCH --nodelist=ml-64-node-001,ml-64-node-002,ml-64-node-003,ml-64-node-004,ml-64-node-005,ml-64-node-006,ml-64-node-007,ml-64-node-008
 
 set -eux
 

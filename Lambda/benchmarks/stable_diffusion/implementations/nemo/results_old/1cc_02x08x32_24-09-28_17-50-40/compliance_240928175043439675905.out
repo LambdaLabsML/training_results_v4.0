@@ -1,0 +1,59 @@
+INFO - Running compliance on file: /results/240928175043439675905_01.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+INFO - SUCCESS
+INFO - Running compliance on file: /results/240928175043439675905_02.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+WARNING -  Required AT_LEAST(2) occurrence of 'aggregated_eval_accuracy' but found 1
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928175043439675905_03.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+WARNING -  Required AT_LEAST(2) occurrence of 'aggregated_eval_accuracy' but found 1
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928175043439675905_04.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+WARNING -  Required AT_LEAST(2) occurrence of 'aggregated_eval_accuracy' but found 1
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928175043439675905_05.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+WARNING -  Required AT_LEAST(2) occurrence of 'aggregated_eval_accuracy' but found 1
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928175043439675905_06.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+WARNING -  Required AT_LEAST(2) occurrence of 'aggregated_eval_accuracy' but found 1
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928175043439675905_07.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+WARNING -  Required AT_LEAST(2) occurrence of 'aggregated_eval_accuracy' but found 1
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928175043439675905_08.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+WARNING -  Required AT_LEAST(2) occurrence of 'aggregated_eval_accuracy' but found 1
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928175043439675905_09.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+WARNING -  Required AT_LEAST(2) occurrence of 'aggregated_eval_accuracy' but found 1
+ERROR - FAILED
+INFO - Running compliance on file: /results/240928175043439675905_10.log
+INFO -  Compliance checks: training_4.0.0/common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_common.yaml
+INFO -  Compliance checks: training_4.0.0/closed_stable_diffusion.yaml
+WARNING -  Required AT_LEAST(2) occurrence of 'aggregated_eval_accuracy' but found 1
+ERROR - FAILED

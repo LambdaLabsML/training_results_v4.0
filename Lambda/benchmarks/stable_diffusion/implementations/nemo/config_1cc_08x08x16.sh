@@ -39,3 +39,4 @@ mkdir -p ${NEMOLOGS}
 
 # Load default settings
 source $(dirname ${BASH_SOURCE[0]})/config_common_1cc.sh
+export CHECKPOINT_STEPS=500

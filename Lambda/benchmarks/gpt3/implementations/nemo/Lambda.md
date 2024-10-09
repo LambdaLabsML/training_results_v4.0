@@ -61,7 +61,7 @@ sudo chmod 1777 /run/enroot
 ```
 # Build the container and push to local registry
 # Currently head node will crash during docker build, so better use a worker node to build the image and push to the head node registery
-export HEADNODE_HOSTNAME=calvin-training-head-003
+export HEADNODE_HOSTNAME=ml-64-head-001
 docker build --build-arg CACHEBUST=$(date +%s) -t $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-gpt3:latest .
 docker push $HEADNODE_HOSTNAME:5000/local/mlperf-nvidia-gpt3:latest
 

@@ -1,0 +1,24 @@
+INFO - Running compliance on file: /results/240929175047663704714_1.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+WARNING -  Failed checks for eval_accuracy : (v['value'] >= 0.720) and v['value'] < 1.0
+ERROR - FAILED
+INFO - Running compliance on file: /results/240929175047663704714_2.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+WARNING -  Failed checks for eval_accuracy : (v['value'] >= 0.720) and v['value'] < 1.0
+ERROR - FAILED
+INFO - Running compliance on file: /results/240929175047663704714_3.log
+INFO -  Compliance checks: training_3.1.0/common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_common.yaml
+INFO -  Compliance checks: training_3.1.0/closed_bert.yaml
+WARNING -  Required EXACTLY_ONE occurrence of 'run_stop' but found 0
+------------------------------
+Required EXACTLY_ONE occurrence of 'train_samples' but found 0
+------------------------------
+Required EXACTLY_ONE occurrence of 'eval_samples' but found 0
+------------------------------
+Required AT_LEAST_ONE occurrence of 'epoch_stop' or 'block_stop'
+ERROR - FAILED
